@@ -2,8 +2,10 @@ package com.vaadin.securitydemo.security
 
 import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.setErrorMessage
+import com.vaadin.flow.component.login.AbstractLogin.ForgotPasswordEvent
 import com.vaadin.flow.component.login.LoginForm
 import com.vaadin.flow.component.login.LoginI18n
+import com.vaadin.flow.component.notification.Notification
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
 import com.vaadin.flow.server.auth.AnonymousAllowed
@@ -44,6 +46,9 @@ class LoginRoute : KComposite() {
                 log.error("Internal error", e)
                 loginForm.setErrorMessage("Internal error", e.message)
             }
+        }
+        loginForm.addForgotPasswordListener { e ->
+            Notification.show( "Forget password email sent.")
         }
     }
 

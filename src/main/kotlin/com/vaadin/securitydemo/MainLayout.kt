@@ -9,6 +9,8 @@ import com.vaadin.flow.component.html.Div
 import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.securitydemo.admin.AdminRoute
+import com.vaadin.securitydemo.security.LoginRoute
+import com.vaadin.securitydemo.security.LoginService
 import com.vaadin.securitydemo.security.loginService
 import com.vaadin.securitydemo.user.UserRoute
 import com.vaadin.securitydemo.welcome.WelcomeRoute
@@ -29,16 +31,32 @@ class MainLayout : KComposite(), RouterLayout {
 
             drawer {
                 sideNav {
+                    // anonymous
                     route(WelcomeRoute::class, VaadinIcon.NEWSPAPER)
-                    route(UserRoute::class, VaadinIcon.LIST)
-                    route(AdminRoute::class, VaadinIcon.COG)
+
+                    // login user ?
+                    if (Session.loginService.isLoggedIn == true) {
+                        // any user
+                        route(UserRoute::class, VaadinIcon.LIST)
+
+                        // admin role?
+                        if (Session.loginService.isUserInRole("ROLE_ADMIN") == true) {
+                            route(AdminRoute::class, VaadinIcon.COG)
+                        }
+                    }
+                    else {
+                        route(LoginRoute::class, VaadinIcon.COG)
+                    }
                 }
-                // logout menu item
-                horizontalLayout(padding = true) {
-                    button("Logout", VaadinIcon.SIGN_OUT.create()) {
-                        addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)
-                        onClick {
-                            Session.loginService.logout()
+
+                if (Session.loginService.isLoggedIn == true) {
+                    // logout menu item
+                    horizontalLayout(padding = true) {
+                        button("Logout", VaadinIcon.SIGN_OUT.create()) {
+                            addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE)
+                            onClick {
+                                Session.loginService.logout()
+                            }
                         }
                     }
                 }

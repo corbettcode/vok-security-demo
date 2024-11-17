@@ -4,6 +4,7 @@ import com.github.mvysny.karibudsl.v10.*
 import com.github.mvysny.kaributools.VaadinVersion
 import com.vaadin.flow.router.PageTitle
 import com.vaadin.flow.router.Route
+import com.vaadin.flow.server.auth.AnonymousAllowed
 import com.vaadin.securitydemo.MainLayout
 import jakarta.annotation.security.PermitAll
 
@@ -16,9 +17,10 @@ import jakarta.annotation.security.PermitAll
  * Note that the [Route] annotation defines the main layout with which this view is wrapped in. See [MainLayout] for details on how to
  * create an app-wide layout which hosts views.
  */
-@Route("", layout = MainLayout::class)
+@AnonymousAllowed
 @PageTitle("Welcome")
 @PermitAll
+@Route("", layout = MainLayout::class)
 class WelcomeRoute : KComposite() {
     private val root = ui {
         verticalLayout {
