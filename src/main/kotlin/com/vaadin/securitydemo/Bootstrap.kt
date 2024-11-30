@@ -49,8 +49,8 @@ class Bootstrap: ServletContextListener {
 
         // setup security
         // security interceptor is configured in AppServiceInitListener
-        User(username = "admin", roles = "ROLE_ADMIN,ROLE_USER").apply { setPassword("admin"); save() }
-        User(username = "user", roles = "ROLE_USER").apply { setPassword("user"); save() }
+        User(username = "admin", roles = "ROLE_ADMIN,ROLE_USER").apply { setPassword("zebra"); save() }
+        User(username = "user", roles = "ROLE_USER").apply { setPassword("zebra"); save() }
 
         log.info("Initialization complete")
     } catch (t: Throwable) {

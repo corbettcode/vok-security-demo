@@ -10,6 +10,7 @@ import com.vaadin.flow.component.icon.VaadinIcon
 import com.vaadin.flow.router.RouterLayout
 import com.vaadin.securitydemo.admin.AdminRoute
 import com.vaadin.securitydemo.security.LoginRoute
+import com.vaadin.securitydemo.security.LoginRoute_v2
 import com.vaadin.securitydemo.security.loginService
 import com.vaadin.securitydemo.user.UserRoute
 import com.vaadin.securitydemo.welcome.WelcomeRoute
@@ -44,7 +45,7 @@ class MainLayout : KComposite(), RouterLayout {
                         }
                     }
                     else {
-                        route(LoginRoute::class, VaadinIcon.COG)
+                        route(LoginRoute_v2::class, VaadinIcon.COG)
                     }
                 }
 
