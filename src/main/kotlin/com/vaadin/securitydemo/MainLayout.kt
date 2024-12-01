@@ -45,7 +45,7 @@ class MainLayout : KComposite(), RouterLayout {
                         }
                     }
                     else {
-                        route(LoginRoute_v2::class, VaadinIcon.COG)
+                        route(LoginRoute::class, VaadinIcon.COG)
                     }
                 }
 

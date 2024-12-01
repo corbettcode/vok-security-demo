@@ -27,40 +27,14 @@ class LoginRoute_v2 : KComposite() {
         verticalLayout {
             setSizeFull(); isPadding = false; content { center() }
 
-            val i18n = LoginI18n.createDefault()
-
-            val i18nHeader = LoginI18n.Header().apply {
-                title = "Sovelluksen nimi"
-                description = "Sovelluksen kuvaus"
+            val i18n = LoginI18n.createDefault().apply {
+                additionalInformation = "Log in as user/user or admin/admin"
             }
-            i18n.header = i18nHeader
 
-            val i18nForm = i18n.form.apply {
-                title = "Kirjaudu sisään"
-                username = "Käyttäjänimi"
-                password = "Salasana"
-                submit = "Kirjaudu sisään"
-                forgotPassword = "Unohtuiko salasana?"
-            }
-            i18n.form = i18nForm
-
-            val i18nErrorMessage = i18n.errorMessage.apply {
-                title = "Väärä käyttäjätunnus tai salasana"
-                message = "Tarkista että käyttäjätunnus ja salasana ovat oikein ja yritä uudestaan."
-            }
-            i18n.errorMessage = i18nErrorMessage
-
-            i18n.additionalInformation = "Jos tarvitset lisätietoja käyttäjälle."
-
-            loginOverlay = LoginOverlay().apply {
-//                setI18n(i18n)
-
-                description = "Built with ♥ by Vaadin"
- //               isOpened = true
+            loginOverlay = LoginOverlay(i18n).apply {
+                isOpened = true
                 element.setAttribute("no-autofocus", "")
-
             }
-
         }
     }
 
